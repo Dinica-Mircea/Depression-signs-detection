@@ -1,0 +1,71 @@
+\chapter{Cross-Linguistic Analysis: Translating and Training the AI Model for Multilingual Depression Detection}
+\label{chap:ch3}
+\par \quad In the ever-evolving field of Artificial Intelligence (AI) and Natural Language Processing (NLP), the ability to accurately detect signs of depression across different languages is both a challenge and a necessity. Multilingual depression detection hinges on the capability of AI models to understand and analyze text beyond the confines of a single language. This section delves into the critical process of translating English text into Romanian, a step essential for training our AI model to recognize depressive patterns in a multilingual context. 
+
+We will discuss the selection criteria and the impact of utilizing a specific Translation API to bridge the language gap, thus enabling our model to process and interpret Romanian text with the same level of proficiency as English. By incorporating these translation mechanisms, we aim to enhance the model's sensitivity and accuracy in identifying depression indicators across diverse linguistic landscapes.
+
+\section{Comparative Analysis of Translation APIs and Selection Rationale for Yandex}
+
+\quad In our effort to refine our multilingual depression detection model, we referenced a detailed study that assessed the efficiency, accuracy, and security of various Translation APIs \cite{rashmi2020comparison}. This comparative analysis served as the foundation for selecting the most suitable API for our application, which required the translation of text from English to Romanian among other language pairs. The study meticulously compared several leading Translation APIs, including Google API, Microsoft, Systran.io, MyMemory, and Yandex, focusing on their performance in terms of speed, accuracy, security, and the breadth of language support.
+\begin{itemize}
+\item \textbf{Google API} is widely recognized for its impressive language support, capable of translating content across more than 100 languages. This extensive reach makes it a versatile tool for global communication and content translation. Its reputation and prevalence in the market are testaments to its utility and user-friendly interface. Additionally, it's worth noting that while Google API is commendable, it is not a free service, which may affect its accessibility for some users.\cite{rashmi2020comparison}.
+
+\item \textbf{Microsoft's Translation API} is lauded for its quality and security, offering translations among 60+ languages. It stands out for its emphasis on accuracy and stringent security protocols, although its language support is less extensive than Google's \cite{rashmi2020comparison}.
+
+\item \textbf{Systran.io} boasts a high accuracy rate of 99\%, albeit with limitations in recognizing slang, nuances, and culturally relevant phrases. Its security is commendable, positioning it as a reliable choice for many applications \cite{rashmi2020comparison}.
+
+\item \textbf{MyMemory} excels in translation speed but experiences the highest latency among the APIs evaluated. While it supports translations between 80+ languages, the absence of training data for certain language combinations limits its effectiveness. Nonetheless, its security is robust \cite{rashmi2020comparison}.
+
+\item \textbf{Yandex API}, with support for 90+ languages, stands out for its balance of translation accuracy and lower latency compared to its counterparts. Despite its efficiency and broad language coverage, its security features are not optimal for translating confidential documents \cite{rashmi2020comparison}.
+\end{itemize}
+
+The conclusion from this study illuminated the strengths and weaknesses of each API, guiding our choice towards Yandex API for our multilingual depression detection model. Yandex was selected due to its free access, lower latency, and reliable accuracy across complex language pairs, making it an ideal tool for everyday translations where security is not the paramount concern \cite{rashmi2020comparison}. This choice aligns with our objective of enhancing accessibility and efficiency in depression detection across multiple languages without the need for extensive resources or development time.
+
+Further bolstering our decision to incorporate Yandex into our multilingual depression detection framework is another rigorous study that provides a nuanced error analysis of Yandex's translations. Notably, Yandex's performance, depicted in the accompanying graph, indicates a relatively uniform distribution of errors across multiple categories \cite{cambedda2021study}. This suggests that while Yandex does have areas that require attention, such as Lexis, Syntax, and Article Usage, it generally maintains the core meaning of the translated text. This is critical for our model, which relies on the preservation of semantic content to accurately detect depressive indicators in text.
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[scale=0.65]{LaTeX Bachelor Thesis Depression Signs Detection/figures/Yandex's-translation-performace.png}
+	\caption{Yandex's translation performance \cite{cambedda2021study}}
+	\label{FigGloablDepression}
+\end{figure}
+
+The Lexis category, in particular, displays the highest number of errors, signaling a need for further investigation to understand whether these issues arise from the nature of the texts or from inherent challenges within the translation tool. However, it is encouraging to note that error categories such as Grammar, Format, Culture-Specific References, Acronym, and Consistency show significantly fewer errors \cite{cambedda2021study}. These categories are essential for maintaining the integrity of meaning, which reaffirms our choice of Yandex for texts where nuanced meaning is less likely to affect the detection of depression indicators.
+
+Further examination of the study indicates that Yandex demonstrates a more adept handling of common language texts as opposed to those with specialized jargon, registering fewer errors in translations of texts with general vernacular \cite{cambedda2021study}. Considering our dataset comprises of Reddit posts, which are typically phrased in everyday language, this finding is particularly relevant. The study also highlights that, with the exception of Article Usage, the disparity in error rates between different text types is negligible, suggesting that Yandex can reliably manage the conversational and informal style characteristic of Reddit communications.
+
+The study’s findings underscore Yandex's capability to offer a satisfactory level of precision and effectiveness for our dataset. Given that Reddit posts are less formal, Yandex's translation services appear well-suited for our project's requirements. The platform’s proficiency in handling everyday language makes it an ideal candidate for our depression detection model's multilingual component. It provides us with a valuable tool for expanding our model’s reach, ensuring that the essence of the messages is captured, which is essential for accurate sentiment analysis, even if minute linguistic details may not be perfectly preserved.
+
+\section{Adjusting to Yandex API's Policy Shift: Navigating New Constraints}
+
+\quad In the pursuit of refining our multilingual depression detection model, we had initially recognized the Yandex API as a superior option, particularly for its cost-effectiveness, as it was freely accessible at the time of study \cite{rashmi2020comparison}. This advantage aligned seamlessly with our objectives, allowing us to leverage its translation capabilities without financial constraints, facilitating broader research and application development.
+
+However, since the publication of \cite{rashmi2020comparison}, Yandex's policy landscape has undergone significant changes. The API, once celebrated for its complimentary access, has shifted to a model that requires users to possess a registered and legally recognized company to utilize its services. This pivot in policy necessitates a reassessment of our tool selection criteria and the potential impact on our project's scope and resource allocation.
+
+The requirement of company registration introduces a layer of complexity, potentially limiting the accessibility of Yandex API for independent researchers, small teams, or educational institutions that may lack formal corporate structures. It also prompts us to consider the legal and administrative overhead that accompanies the establishment of a formal entity, which may not be viable or desirable for all projects.
+
+In light of these new stipulations, our commitment to developing an effective and accessible multilingual depression detection model remains unwavering. As such, we are prompted to explore alternative strategies.
+
+\section{Transitioning to googletrans for Multilingual Support}
+
+\quad After careful consideration of the new constraints imposed by Yandex API, our team has made a strategic pivot to integrate the googletrans library \cite{googletranslib} into our multilingual depression detection model. googletrans presents itself as an appealing alternative, offering a free and unlimited Python library that interfaces with the Google Translate API. This library appears particularly advantageous for our requirements, as it is not only accessible without cost but also does not require the bureaucratic process of company registration that Yandex now demands.
+
+The googletrans library \cite{googletranslib} boasts impressive features that are well-suited to our project's needs. It is recognized for its speed and reliability, as it operates on the same servers as translate.google.com. The library supports auto language detection, facilitating the identification and translation of a wide array of languages without prior specification. Additionally, it provides the capability for bulk translations, which is invaluable when processing large datasets typically found in NLP tasks.
+
+While googletrans \cite{googletranslib} has an impressive array of features, it is also important to acknowledge the library’s usage notes. The 15,000-character limit per text may require segmentation of longer passages, and the inherent instability of web-based translation services means that we should proceed with a level of flexibility regarding the library's reliability. The developers themselves suggest opting for the official Google Translate API for critical applications where stability is paramount. Furthermore, potential HTTP errors could indicate temporary bans by Google, necessitating monitoring and management of our API usage to prevent disruption.
+
+Despite these considerations, the googletrans library's free and robust nature makes it an excellent fit for our project in its current stage. It allows us to continue advancing our multilingual depression detection capabilities while adhering to our resource constraints. In this section, we will explore the integration process, address the library’s limitations with strategic solutions, and outline how we will ensure the model's performance remains high even with the switch to a different translation tool.
+
+\section{Optimizing Tokenization for Romanian: Preserving Preprocessing Uniformity Across Languages}
+
+\quad When constructing a multilingual depression detection model, the choice of tokenizer is pivotal for accurately interpreting the linguistic nuances of each language. Our study contrasts the tokenization techniques of English with those adapted for Romanian, based on the comprehensive study of Romanian BERT \cite{dumitrescu2020birth}. Tokenization, the breaking down of text into its constituent parts or tokens, serves as the foundation for pre-processing text data.
+
+BERT's tokenizer for English text employs a WordPiece model\cite{wu2016google}, which excels at parsing English sentences into a sensible sequence of sub-tokens. This tokenizer, while effective, is optimized for the linguistic patterns inherent in the English language, which differ significantly from Romanian. Romanian Bert \cite{dumitrescu2020birth} tailors the tokenization process to the Romanian language's unique characteristics.
+
+The comparative advantage of the Romanian-specific tokenizer over a more general multilingual BERT (M-BERT) model is evident in its proficiency at tokenization, crucial for any NLP task. In the context of our model’s use case, it was shown that the Romanian BERT tokenizer could break down words into approximately 1.4 tokens on average, while M-BERT reached up to 2 tokens per word for the cased vocabulary. Additionally, the incidence of unknown tokens was drastically reduced by an order of magnitude with the Romanian BERT tokenizer \cite{dumitrescu2020birth}.
+
+This optimized tokenization not only enhances the accuracy of linguistic analysis but also improves the model’s ability to interpret the text in a manner that aligns with LIWC-22's \cite{boyd2022development} requirements. With better tokenization, the nuances of depression indicators in the text are more likely to be captured, regardless of linguistic differences. This tailoring becomes all the more crucial when the LIWC tool is applied, as it relies heavily on token recognition to categorize and quantify various linguistic and psychological components within the text.
+
+The study's conclusion \cite{dumitrescu2020birth} underscored the superiority of the Romanian BERT tokenizer for the Romanian language, illustrating the benefits of customizing NLP tools to accommodate the linguistic intricacies of specific languages. This aligns with our goal of achieving high fidelity in detecting depressive markers within text, bolstering the model's sensitivity and precision, especially in a language-sensitive context like mental health assessment.
+
+In essence, the custom Romanian tokenizer is not only better suited for handling Romanian text but also exemplifies the importance of language-specific NLP tools in enhancing the performance of models on tasks such as depression detection from social media text.
