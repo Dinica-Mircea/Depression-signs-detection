@@ -1,0 +1,12 @@
+1.3. structure 
+titlu capitolul 2 liwc -> inceput cu evolutia si arhitectura, dupa capabilitatile, rezumat mai mult.
+fara prea multe introduceri, mai scurt(la capitolul 2).
+tabel pentru categorii
+In summary -> la inceput nu la final.
+tokenizare poate sa nu fie asa complicata.
+De luat clase reprezentative si in romana si in engleza.
+capitolul care descrie aplicatia sa contina dataset-ul.
+capitolul cu alegerea ai ului mai rezumat
+schema cu flow-ul algoritmului -> proposed approach.
+O sectiune unde descriu random forest.
+De adus aminte -> lucrarea mea corectata si o lucrare de la altcineva de licenta.
