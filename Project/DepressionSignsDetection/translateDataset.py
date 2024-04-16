@@ -6,8 +6,8 @@ def translateFromEnToRo(text):
     return translator.translate(text=text, src='en', dest='ro').text
 
 
-def translateDataset(pathToEnDataset, pathToRoDataset):
-    fileInput = open(pathToEnDataset, 'r')
+def translateDataset(pathToEnglishDatasetInput, pathToRomanianDatasetOutput):
+    fileInput = open(pathToEnglishDatasetInput, 'r')
     lines = fileInput.readlines()
     translatedLines = []
     for line in lines[1:]:
@@ -16,7 +16,7 @@ def translateDataset(pathToEnDataset, pathToRoDataset):
         translatedText = translateFromEnToRo(text)
         translatedLines.append(translatedText + label)
 
-    with open(pathToRoDataset, 'w', encoding='utf-8') as fileOutput:
+    with open(pathToRomanianDatasetOutput, 'w', encoding='utf-8') as fileOutput:
         for line in translatedLines:
             fileOutput.write(line)
 

@@ -1,16 +1,19 @@
 from collections import Counter
-from tokenizers import Tokenizer
-from transformers import AutoTokenizer
 
 import liwc
 
+from transformers import AutoTokenizer
 
-def tokenizeEn(text):
+
+from tokenizers import Tokenizer
+
+
+def tokenizeForEnglishLanguage(text):
     tokenizer = Tokenizer.from_pretrained("bert-base-cased")
     return tokenizer.encode(text).tokens
 
 
-def tokenizeRo(text):
+def tokenizeForRomanianLanguage(text):
     # tokenizer only accepts this kind of special characters
     text = text.replace("ţ", "ț").replace("ş", "ș").replace("Ţ", "Ț").replace("Ş", "Ș")
     # load tokenizer and model
@@ -67,4 +70,4 @@ def processDataset(pathToDataset, tokenizeFunction, pathToLiwcDictionary):
 if __name__ == '__main__':
     pathToEnLiwcDictionary = 'liwc/Dictionary/free/LIWC2007_English100131.dic'
     pathToEnDataset = 'dataset/raw/English/depression_dataset_reddit_cleaned.csv'
-    processDataset(pathToEnDataset, tokenizeEn, pathToEnLiwcDictionary)
+    processDataset(pathToEnDataset, tokenizeForEnglishLanguage, pathToEnLiwcDictionary)
