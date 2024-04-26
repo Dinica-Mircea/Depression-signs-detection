@@ -16,6 +16,8 @@ def split_data(pathToDataset):
     x = []
     y = []
     feature_names = lines[0].split(',')[2:]
+    print(feature_names.__len__())
+    print(feature_names)
     for line in lines[1:]:
         splitted = line.split(',')
         y.append(float(splitted[1]))
@@ -23,6 +25,8 @@ def split_data(pathToDataset):
 
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.25, stratify=y)
     return X_train, X_test, y_train, y_test, feature_names
+
+
 
 
 def train(pathToDataset, pathToSaveMetrics, pathToSaveModel, pathToMaxMetric, pathToMaxParameters):
@@ -168,4 +172,6 @@ if __name__ == '__main__':
     pathToSaveModel = 'models/English/model.cpickle'
     pathToMaxMetric = 'models/English/maxRecall.txt'
     pathToMaxParams = 'models/English/hyperparamsForMax.txt'
-    train(pathToEnglishDataset, pathToSaveMetrics, pathToSaveModel, pathToMaxMetric, pathToMaxParams)
+    split_data(pathToEnglishDataset)
+    # train(pathToEnglishDataset, pathToSaveMetrics, pathToSaveModel, pathToMaxMetric, pathToMaxParams)
+
