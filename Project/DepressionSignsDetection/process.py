@@ -1,4 +1,5 @@
 import json
+import os
 import pickle
 import subprocess
 from googletrans import Translator
@@ -6,6 +7,8 @@ from googletrans.models import Detected
 
 
 def processWithLiwc(inputText, liwcDictionary):
+    print(inputText)
+    print(liwcDictionary)
     cmd_to_execute = ["LIWC-22-cli",
                       "--mode", "wc",
                       "--dictionary", liwcDictionary,
@@ -13,20 +16,36 @@ def processWithLiwc(inputText, liwcDictionary):
                       "--console-text", inputText,
                       "--output", "console"]
     results = subprocess.check_output(cmd_to_execute, shell=True).strip().splitlines()
+    print(results)
     categories = json.loads(results[1])
     categories.pop('Emoji', None)
     print(categories)
     x = []
     for key, value in categories.items():
         x.append(value)
-
     return x
 
 
-def getModel(pathToModel):
+def getModel(pathToModel, root):
+    root=os.path.dirname(os.path.abspath(__file__))
+    pathToModel = os.path.join(root, pathToModel)
+    pathToModel=pathToModel.replace("\\","\\\\")
+    print(pathToModel)
+    if not os.path.exists(pathToModel):
+        print("File not found")
+    else:
+        print("File found")
+    if os.access(pathToModel, os.R_OK):
+        print("File is accessible for reading")
+    else:
+        print("File is not accessible for reading")
     rf = None
-    with open(pathToModel, 'rb') as f:
-        rf = pickle.load(f)
+    try:
+        with open(pathToModel, 'rb') as f:
+            rf = pickle.load(f)
+    except Exception as e:
+        print("help")
+        print(e.__str__())
 
     if rf is not None:
         return rf
@@ -34,27 +53,27 @@ def getModel(pathToModel):
         print("Couldn't load model")
 
 
-def classify(inputText):
-    modelPathEnglish = "models/English/model.cpickle"
-    modelPathRo = "models/Romanian/model.cpickle"
+def classify(inputText, root):
+    modelPathEnglish = "models\English\model.cpickle"
+    modelPathRo = "models\Romanian\model.cpickle"
     translator = Translator()
     result = translator.detect(inputText)
     language = Detected.__getattribute__(result, 'lang')
     print(language)
     if language == 'ro':
-        rf = getModel(modelPathRo)
+        rf = getModel(modelPathRo, root)
         liwcDictionary = "liwc/Dictionary/Romanian2015/LIWC2015 Dictionary - Romanian.dicx"
     elif language == 'en':
-        rf = getModel(modelPathEnglish)
+        rf = getModel(modelPathEnglish, root)
         liwcDictionary = "LIWC22"
     else:
         inputText = translator.translate(inputText, dest='en').text
-        rf = getModel(modelPathEnglish)
+        rf = getModel(modelPathEnglish, root)
         liwcDictionary = "LIWC22"
 
     inputCategories = processWithLiwc(inputText, liwcDictionary)
-    print(inputCategories)
     print(rf.predict([inputCategories]))
+    return int(rf.predict([inputCategories]))
 
 
 if __name__ == '__main__':
@@ -84,7 +103,5 @@ if __name__ == '__main__':
                              "kleine Aufgabe erscheint wie ein Berg, und der Gipfel ist stets in Wolken aus " \
                              "Desinteresse und Erschöpfung gehüllt. Ich sehne mich nach einer Lücke in den Wolken, " \
                              "einem Moment des Sonnenlichts, doch er scheint so fern. "
-
-    liwcDictionaryEnglish = "LIWC22"
-    modelPathEnglish = "models/English/model.cpickle"
-    classify(inputStringDepressedDe)
+    root = r"C:\Users\Mircea\Desktop\Licenta\Depression-signs-detection\Project\DepressionSignsDetection"
+    classify(inputStringDepressedRo, root)
