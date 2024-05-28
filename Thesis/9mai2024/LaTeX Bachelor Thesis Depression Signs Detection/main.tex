@@ -1,0 +1,70 @@
+%\documentclass[12pt]{scrreprt}
+\documentclass[12pt]{report} 
+
+% language may be romanian or english (default is english)
+% type may be bachelor or master (default is bachelor)
+\usepackage[language=english, type=bachelor]{style}
+\usepackage{amsmath}
+
+%\geometry{a4paper,top=2.5cm,left=3cm,right=2.5cm,bottom=2.5cm}
+%in style
+%controlling the appearance of your headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.2pt}
+
+\begin{document}
+
+\specialization{COMPUTER SCIENCE ROMANIAN}	
+\title{Depression signs detection}					   
+\author{Dinică Mircea}											
+\supervisor{Lect. PhD. Lupea Mihaiela}				
+				
+\maketitle
+
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\pagenumbering{roman} 
+
+\cleardoublepage
+ABSTRACT
+\vspace{0.5cm}	
+\hrule
+\vspace{0.5cm}	
+%\cleardoublepage
+
+The purpose of this paper is to research the viability of machine translation of text from English to Romanian, in order to use Natural Language Processing(NLP) and Artificial Intelligence(AI) to detect if the text shows signs of depression or not. Depression is a major problem right now, which if not addressed can cause serious problems. With the help of NLP and AI, it is desired to develop a tool for giving an opportunity to its users to have an easy way to get an initial assessment of their texts, in cases such as private text messages, their own thoughts or even help professionals reach possible clients in order to help them.
+
+This paper describes its content in six chapters. Chapter 1 provides the motivation and purpose of the depression detection application. Chapter 2 gives details regarding the dataset used and the pre-processing techniques, namely BERT Tokenization and Linguistic Word Inquiry and Word Count which recognizes the emotions and grammar parts which the tokens belong to. Chapter 3 describes the machine learning classification algorithm Random Forest and the reason why it was chosen, and also the results of the training. Chapter 4 details the results of making a similar AI model for Romanian, which contains the tasks of translating the dataset, using the same pre-processing techniques and training the Random Forest algorithm.
+Chapter 5 summarizes the architecture and technologies used to implement the practical tool. The final chapter outlines the conclusions and proposes future development ideas. 
+
+As a practical tool for the algorithm, a web application which expects as input a text. The output is the class which was attributed to the text with a corresponding message advising the user to investigate further with the author of the text, and also the top 5 categories of words found in the input with their respective percentages related to total word count. This will be computed on a web back-end server, respecting the REST architectural style. The chosen technologies for developing the tool are Python with Flask framework for the back-end server and React, the JavaScript library for the front-end server.
+
+\tableofcontents
+
+
+\newpage
+\pagenumbering{arabic}
+
+\input{chapters/chapter1_introduction}
+%\addcontentsline{toc}{chapter}{Introducere}
+%\addcontentsline{toc}{chapter}{Introduction}
+
+\input{chapters/chapter2_dataset_and_tool}
+\input{chapters/chapter3_model}
+\input{chapters/chapter4_cross_linguistic}
+\input{LaTeX Bachelor Thesis Depression Signs Detection/chapters/chapter5_practicApp}
+\input{chapters/chapter6_conclusions}
+%\addcontentsline{toc}{chapter}{Concluzii}
+%\addcontentsline{toc}{chapter}{Conclusions}
+
+\bibliography{references}
+
+\end{document}
+%TODO: cand cumpar licenta pt liwc schimbat inloc de 64 input attributes cu cate o sa am
