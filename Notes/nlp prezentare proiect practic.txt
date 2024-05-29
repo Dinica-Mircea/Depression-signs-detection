@@ -24,18 +24,24 @@ la capitolul de romana
 1.5 structure of thesis
 
 2. Theoretical background
-2.1 NLP -> general
+2.1 NLP -> general:
+taskuri de baza in general: lematizare, part of speech, pre procesare, nu detaliat, un overview, aplicatiile mari de baza ale nlp summarization
 2.2 Random Forrest
 
 3. Dataset and LIWC
 3.1 Dataset Overview
-3.1.1 Dataset translation for romanian
+3.1.1 Dataset translation for romanian -> exemplu cu cateva translatate cu depresie sau nu
 3.1.2 si restu pentru limba romana
-3.2 LIWC -> ce am deja
+3.2 LIWC -> ce am deja -> adaugat in categorii
+poza cu categoriile
 
 4. Detecting Depression
-4.1 Pipeline cum s au antrenat (la maxim exemplu)
-4.2 Experiments
+4.1 methodology 
+Pipeline cum s au antrenat (la maxim exemplu)
+classification flow
+si alt flow cu translatare si nuj ce
+explicat concret ce e feature vector ului
+4.2 Experiments -> se face legatura cu teoria bagata
 4.2.1 Primul English
 4.2.2 Al doilea English
 4.2.3 Romanian
