@@ -49,4 +49,17 @@ explicat concret ce e feature vector ului
 5 si 6 la fel 
 
 
+✅-Schimbat titlul
+✅-Using Machine Learning To Detect Depression In A Multi-linguistic Context
+✅-itemize la goaluri in Objective
+✅-Citare poza cu random Forest
+✅-explicat standard deviation la test kitchen
+✅-test dataset intra in model
+✅-predicted labels sa nu fie romb
+✅-in concluzie de adaugat fraza si cu f1 score si accuracy
+✅-la exemple facut ca la 1
+✅-la ex 2 corectat
+✅-screenshot cu rezultatul la chrome extension
+✅-la diagrama schimbat performance performance si scris test pe sageata in classifier, dreptunghi la predictive model
+
 

@@ -27,8 +27,6 @@ def split_data(pathToDataset):
     return X_train, X_test, y_train, y_test, feature_names
 
 
-
-
 def train(pathToDataset, pathToSaveMetrics, pathToSaveModel, pathToMaxMetric, pathToMaxParameters):
     X_train, X_test, y_train, y_test, feature_names = split_data(pathToDataset)
     rf = RandomForestClassifier(n_estimators=900, max_features=6,
@@ -166,6 +164,9 @@ def top10features(rf, pathToSave, feature_names):
     # plt.show()
 
 
+
+
+
 if __name__ == '__main__':
     pathToEnglishDataset = 'dataset/processedWithLIWC/English/depression_dataset_reddit_cleaned.csv'
     pathToSaveMetrics = 'metrics/experiment2/'
@@ -174,4 +175,3 @@ if __name__ == '__main__':
     pathToMaxParams = 'models/English/hyperparamsForMax.txt'
     split_data(pathToEnglishDataset)
     # train(pathToEnglishDataset, pathToSaveMetrics, pathToSaveModel, pathToMaxMetric, pathToMaxParams)
-

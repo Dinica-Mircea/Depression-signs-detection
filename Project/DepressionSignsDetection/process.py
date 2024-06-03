@@ -6,6 +6,7 @@ from googletrans import Translator
 from googletrans.models import Detected
 
 
+
 def processWithLiwc(inputText, liwcDictionary):
     print(inputText)
     print(liwcDictionary)
@@ -76,6 +77,60 @@ def classify(inputText, root):
     return int(rf.predict([inputCategories]))
 
 
+def findInputsForThesis():
+    modelPathEnglish = "models\English\model.cpickle"
+    modelPathRo = "models\Romanian\model.cpickle"
+    root = r"C:\Users\Mircea\Desktop\Licenta\Depression-signs-detection\Project\DepressionSignsDetection"
+    pathToEnDataset = 'dataset/raw/English/depression_dataset_reddit_cleaned.csv'
+    pathToRoDataset = 'dataset/raw/Romanian/depression_dataset_reddit_cleaned_changed.csv'
+
+    rfRo = getModel(modelPathRo, root)
+    rfEn = getModel(modelPathEnglish, root)
+    xEn = []
+    yEn = []
+    fileInput = open(pathToEnDataset, 'r')
+    lines = fileInput.readlines()
+    for line in lines[1:]:
+        text = line[:line.__len__() - 3]
+        label = line[line.__len__() - 3:]
+        xEn.append(text)
+        yEn.append(label)
+
+    xRo = []
+    yRo = []
+    fileInput = open(pathToRoDataset, 'r', encoding='utf-8')
+
+    lines = fileInput.readlines()
+    for line in lines[1:]:
+        text = line[:line.__len__() - 3]
+        label = line[line.__len__() - 3:]
+        xRo.append(text)
+        yRo.append(label)
+
+    for i in range(0,len(xRo)):
+        textRo=xRo.__getitem__(i)
+        textEn=xEn.__getitem__(i)
+        outputRo=classify(textRo,root)
+        outputEn=classify(textEn,root)
+        trueOutput=yEn.__getitem__(i).replace("\n","").replace(",","")
+        if outputRo==outputEn and outputRo==int(trueOutput):
+            print("Text corect si pentru engleza si pentru romana")
+            print(textRo)
+            print(textEn)
+
+        if outputRo!=outputEn and outputEn==int(trueOutput):
+            print("Text corect pentru engleza dar nu pentru romana")
+            print(textRo)
+            print(textEn)
+
+        if outputRo==outputEn and outputRo!=int(trueOutput):
+            print("Text incorect si pentru engleza si pentru romana")
+            print(textRo)
+            print(textEn)
+
+
+
+
 if __name__ == '__main__':
     inputStringTest = "This is some text that I would like to analyze. After it has finished, I will say \"Thank you, " \
                       "LIWC!\" "
@@ -104,4 +159,5 @@ if __name__ == '__main__':
                              "Desinteresse und Erschöpfung gehüllt. Ich sehne mich nach einer Lücke in den Wolken, " \
                              "einem Moment des Sonnenlichts, doch er scheint so fern. "
     root = r"C:\Users\Mircea\Desktop\Licenta\Depression-signs-detection\Project\DepressionSignsDetection"
-    classify(inputStringDepressedRo, root)
+    #classify(inputStringDepressedRo, root)
+    findInputsForThesis()
