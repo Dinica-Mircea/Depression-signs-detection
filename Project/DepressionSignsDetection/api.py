@@ -15,7 +15,7 @@ def classify_text():
     elif request.method == "POST":
         if request.is_json:
             data = request.get_json()
-            text = data.get('text', '')
+            text = data.get('text', '').replace('\n','')
             print(text)
             if classify(text, app.instance_path) == 1:
                 result = 'depression'
