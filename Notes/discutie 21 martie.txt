@@ -1,4 +1,0 @@
--dataset adaug 
-- corelation metrics
-- random forrest cu boosting
-- relieff function

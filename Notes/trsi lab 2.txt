@@ -1,4 +1,0 @@
-in introducere si in motivatie merg folosite articole psihologice
-cum se scrie bibliografia - google scholar cautat documentul
-				- apasat buton "cite"
-				- bibtex pt latex

@@ -1,3 +1,0 @@
-roc ce e
-top 10 features cum s a facut
-cum merge random forrest si hyperparametrii ce fac

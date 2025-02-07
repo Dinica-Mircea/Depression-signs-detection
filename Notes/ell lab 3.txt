@@ -1,3 +1,0 @@
-- comparat cu aplicatii existente sau comparat cu studii
-- pot sa pastrez capitolul fara rezultate de analiza a api-ulilor
-- se scrie doar la finalul introducerii legat de ai generativ
